@@ -1,7 +1,9 @@
 import sys
 import os
 
-# Absolute path resolution for Vercel & local VS Code
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend")))
+# Set current working directory to 'backend'
+backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend"))
+sys.path.insert(0, backend_dir)
+os.chdir(backend_dir)
 
 from run import app
