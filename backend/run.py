@@ -12,8 +12,8 @@ load_dotenv()
 if __name__ == "__main__":
     uvicorn.run(
         "app.main:app",
-        host    = os.getenv("APP_HOST",   "0.0.0.0"),
-        port    = int(os.getenv("APP_PORT", "8000")),
-        reload  = os.getenv("APP_RELOAD", "true").lower() == "true",
-        log_level = "info",
+        host=os.getenv("APP_HOST", os.getenv("HOST", "0.0.0.0")),
+        port=int(os.getenv("APP_PORT", os.getenv("PORT", "8000"))),
+        reload=os.getenv("APP_RELOAD", "true").lower() == "true",
+        log_level="info",
     )
