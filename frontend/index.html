@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salamtea — A Matter of Good Taste</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+    :root{
+      --cream:#f6f1e8;
+      --cream2:#eee8dc;
+      --green:#3f5d16;
+      --dark:#25251f;
+      --line:#d9d1c3;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      background:var(--cream);
+      color:var(--dark);
+      font-family:Montserrat,Arial,sans-serif;
+    }
+
+    /* ---------- NAVBAR ---------- */
+    header{
+      height:88px;
+      border-bottom:1px solid var(--line);
+      background:rgba(246,241,232,.97);
+      display:flex;
+      align-items:center;
+      position:relative;
+      z-index:10;
+    }
+
+    .nav{
+      width:min(1280px,96%);
+      margin:auto;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+    }
+
+    .menu{
+      display:flex;
+      gap:34px;
+      list-style:none;
+      align-items:center;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:#33332d;
+      font-size:13px;
+      font-weight:500;
+      letter-spacing:.3px;
+      position:relative;
+    }
+
+    .menu a:hover{color:var(--green)}
+
+    .menu a.active{color:var(--green)}
+
+    .menu a.active:after{
+      content:"";
+      position:absolute;
+      left:0;
+      right:0;
+      margin:auto;
+      bottom:-14px;
+      width:20px;
+      height:1px;
+      background:var(--green);
+    }
+
+    .logo{
+      width:92px;
+      height:72px;
+      object-fit:contain;
+      justify-self:center;
+    }
+
+    .icons{
+      justify-self:end;
+      display:flex;
+      gap:27px;
+      align-items:center;
+      color:#34342e;
+    }
+
+    .icon{
+      width:22px;
+      height:22px;
+      position:relative;
+    }
+
+    .search{
+      border:1.5px solid currentColor;
+      border-radius:50%;
+      width:15px;
+      height:15px;
+      position:absolute;
+      top:1px;
+      left:1px;
+    }
+
+    .search:after{
+      content:"";
+      width:7px;
+      height:1.5px;
+      background:currentColor;
+      position:absolute;
+      right:-5px;
+      bottom:-3px;
+      transform:rotate(48deg);
+    }
+
+    .person:before{
+      content:"";
+      width:9px;
+      height:9px;
+      border:1.4px solid currentColor;
+      border-radius:50%;
+      position:absolute;
+      left:6px;
+      top:0;
+    }
+
+    .person:after{
+      content:"";
+      width:17px;
+      height:9px;
+      border:1.4px solid currentColor;
+      border-bottom:0;
+      border-radius:12px 12px 0 0;
+      position:absolute;
+      left:2px;
+      bottom:1px;
+    }
+
+    .cart:before{
+      content:"";
+      position:absolute;
+      left:3px;
+      top:5px;
+      width:15px;
+      height:10px;
+      border:1.5px solid currentColor;
+      border-top:0;
+      transform:skew(-8deg);
+    }
+
+    .cart:after{
+      content:"•  •";
+      white-space:pre;
+      letter-spacing:4px;
+      position:absolute;
+      left:4px;
+      bottom:-5px;
+      font-size:13px;
+    }
+
+    .badge{
+      position:absolute;
+      top:-6px;
+      right:-7px;
+      background:var(--green);
+      color:white;
+      width:15px;
+      height:15px;
+      border-radius:50%;
+      font-size:9px;
+      display:grid;
+      place-items:center;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero{
+      min-height:72vh;
+      position:relative;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      overflow:hidden;
+      background:
+        linear-gradient(to bottom, rgba(246,241,232,.28), rgba(246,241,232,.10) 50%, rgba(246,241,232,.02)),
+        url("assets/tea-garden.jpg") center center / cover no-repeat;
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(
+        to bottom,
+        rgba(246,241,232,.20) 0%,
+        rgba(246,241,232,.10) 48%,
+        rgba(38,55,17,.12) 100%
+      );
+      pointer-events:none;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      margin-top:-20px;
+    }
+
+    .hero-logo{
+      width:340px;
+      max-width:58vw;
+      margin-bottom:22px;
+      filter:drop-shadow(0 5px 10px rgba(0,0,0,.10));
+    }
+
+    .brand-line{
+      font-family:"Cormorant Garamond",serif;
+      font-size:42px;
+      font-weight:600;
+      letter-spacing:.2px;
+      color:#26271f;
+    }
+
+    .brand-line span{color:var(--green)}
+
+    .divider{
+      width:175px;
+      margin:18px auto 12px;
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .divider:before,.divider:after{
+      content:"";
+      height:1px;
+      background:rgba(45,53,32,.35);
+      flex:1;
+    }
+
+    .leaf{
+      color:var(--green);
+      font-size:18px;
+      line-height:1;
+    }
+
+    .tagline{
+      font-family:"Cormorant Garamond",serif;
+      font-size:26px;
+      font-style:italic;
+      letter-spacing:.3px;
+    }
+
+    .scroll{
+      margin-top:55px;
+      color:#fff;
+      font-size:10px;
+      letter-spacing:2px;
+      text-shadow:0 1px 5px rgba(0,0,0,.5);
+    }
+
+    .scroll-circle{
+      width:24px;
+      height:43px;
+      border:1px solid white;
+      border-radius:20px;
+      margin:0 auto 9px;
+      position:relative;
+    }
+
+    .scroll-circle:after{
+      content:"";
+      position:absolute;
+      top:8px;
+      left:50%;
+      width:3px;
+      height:8px;
+      background:white;
+      border-radius:5px;
+      transform:translateX(-50%);
+    }
+
+    /* ---------- FEATURE BAR ---------- */
+    .features{
+      background:rgba(246,241,232,.98);
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-bottom:1px solid var(--line);
+    }
+
+    .feature{
+      min-height:110px;
+      padding:26px 32px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      border-right:1px solid var(--line);
+    }
+
+    .feature:last-child{border-right:0}
+
+    .feature-icon{
+      width:35px;
+      height:35px;
+      border:1px solid #82906a;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      color:#687d43;
+      font-size:19px;
+      flex:0 0 auto;
+    }
+
+    .feature h4{
+      font-size:13px;
+      font-weight:600;
+      margin-bottom:6px;
+      letter-spacing:.2px;
+    }
+
+    .feature p{
+      font-size:11px;
+      line-height:1.5;
+      color:#626057;
+    }
+
+    /* ---------- MOBILE ---------- */
+    @media(max-width:900px){
+      header{height:auto;padding:15px 0}
+      .nav{grid-template-columns:1fr auto 1fr}
+      .menu{gap:12px;flex-wrap:wrap}
+      .menu a{font-size:11px}
+      .logo{width:70px;height:58px}
+      .icons{gap:12px}
+      .hero{min-height:570px}
+      .hero-logo{width:230px}
+      .brand-line{font-size:29px}
+      .features{grid-template-columns:1fr 1fr}
+      .feature{border-bottom:1px solid var(--line)}
+    }
+
+    @media(max-width:600px){
+      .menu{display:none}
+      .nav{grid-template-columns:1fr auto 1fr}
+      .nav:before{
+        content:"MENU";
+        font-size:10px;
+        letter-spacing:1px;
+        color:var(--green);
+      }
+      .logo{width:75px}
+      .icons{gap:10px}
+      .hero{min-height:530px}
+      .hero-logo{width:190px}
+      .brand-line{font-size:25px}
+      .tagline{font-size:18px}
+      .features{grid-template-columns:1fr}
+      .feature{border-right:0}
+      .scroll{margin-top:40px}
+    }
+  
+  /* =========================================================
+     SALAMTEA — LUXURY ANIMATIONS (injected, non-destructive)
+     ========================================================= */
+
+  /* 1. Smooth scroll globally */
+  html { scroll-behavior: smooth; }
+
+  /* 2. Keyframes */
+  @keyframes st-logo-float-in {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0);      }
+  }
+
+  @keyframes st-fade-slide-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  /* 3. Logo entrance — nav logo (all pages) */
+  .logo {
+    animation: st-logo-float-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* 4. Hero logo entrance (index only — slightly slower for drama) */
+  .hero-logo {
+    animation: st-logo-float-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.05s both;
+  }
+
+  /* 5. Page main content fade + slide up */
+  main, .about-page, .page, .contact-wrap {
+    animation: st-fade-slide-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.08s both;
+  }
+
+  /* 6. Nav link hover transitions */
+  .menu a,
+  .nav a {
+    transition: color 0.28s ease, letter-spacing 0.28s ease;
+  }
+
+  /* 7. Nav icon hover */
+  .icon,
+  .action,
+  .actions a {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  .icon:hover,
+  .action:hover,
+  .actions a:hover {
+    transform: translateY(-2px);
+    opacity: 0.75;
+  }
+
+  /* 8. Buttons */
+  .btn,
+  button,
+  [type="submit"],
+  .submit-btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn:hover,
+  button:hover,
+  [type="submit"]:hover,
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(63,93,22,.18);
+  }
+
+  /* 9. Tea / product cards */
+  .product-card,
+  .promise,
+  .diff,
+  .region,
+  .feature {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover,
+  .promise:hover,
+  .diff:hover,
+  .region:hover,
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(45,40,30,.09);
+  }
+
+  /* 10. Feature icons & CTA icons */
+  .feature-icon,
+  .icon-circle {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .feature-icon:hover,
+  .icon-circle:hover {
+    transform: scale(1.12);
+    border-color: var(--green);
+  }
+
+  /* 11. Photo wrap (about page) */
+  .photo-wrap {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .photo-wrap:hover {
+    transform: translateY(-3px) scale(1.008);
+    box-shadow: 0 10px 32px rgba(45,40,30,.10);
+  }
+
+  /* 12. Pack rows (our-tea) */
+  .pack {
+    transition: background 0.22s ease, border-color 0.22s ease;
+  }
+  .pack:hover {
+    background: rgba(255,255,255,.55);
+    border-color: var(--green);
+  }
+
+  /* 13. Form inputs (contact) */
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    box-shadow: 0 0 0 3px rgba(63,93,22,.10);
+  }
+
+  /* 14. Region / flag images */
+  .region-img,
+  .region-img img {
+    transition: transform 0.35s ease;
+  }
+  .region:hover .region-img img {
+    transform: scale(1.04);
+  }
+</style>
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav">
+
+      <ul class="menu">
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="our-tea.html">OUR TEA</a></li>
+        <li><a href="quality.html">QUALITY</a></li>
+        <li><a href="contact-us.html">CONTACT US</a></li>
+      </ul>
+
+      <!-- Put your transparent Salamtea logo at assets/logo.png -->
+      <img class="logo" src="assets/logo.png" alt="Salamtea — Since 1955">
+
+      <div class="icons">
+        <span class="icon"><span class="search"></span></span>
+        <span class="icon"><span class="person"></span></span>
+        <span class="icon cart"><span class="badge">0</span></span>
+      </div>
+
+    </nav>
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <!-- Same logo can be used in the hero -->
+        <img class="hero-logo" src="assets/logo.png" alt="Salamtea">
+
+        <div class="brand-line">
+          <span>Salamtea</span> — A Matter of Good Taste
+        </div>
+
+        <div class="divider">
+          <span class="leaf">⌁</span>
+        </div>
+
+        <p class="tagline">Pure Fine Tea, Since 1955</p>
+
+        <div class="scroll">
+          <div class="scroll-circle"></div>
+          SCROLL DOWN
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="features">
+
+      <div class="feature">
+        <div class="feature-icon">♧</div>
+        <div>
+          <h4>FINEST QUALITY</h4>
+          <p>Carefully selected leaves<br>from the best gardens.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">♨</div>
+        <div>
+          <h4>RICH &amp; REFRESHING</h4>
+          <p>Expertly blended for a rich<br>aroma and refreshing taste.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">♡</div>
+        <div>
+          <h4>TRUSTED SINCE 1955</h4>
+          <p>A legacy of quality and trust<br>for generations.</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">♧</div>
+        <div>
+          <h4>PURE &amp; NATURAL</h4>
+          <p>100% natural tea with<br>no added compromise.</p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+<script>
+/* Salamtea — page transition JS (non-destructive) */
+(function(){
+  /* Intercept internal nav clicks for a smooth leave transition */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[href]");
+    if(!a) return;
+    var href = a.getAttribute("href");
+    /* Only handle same-origin, non-anchor, non-blank links */
+    if(!href || href.startsWith("#") || href.startsWith("http") ||
+       href.startsWith("javascript") || a.target === "_blank") return;
+    e.preventDefault();
+    document.body.style.transition = "opacity 0.28s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function(){ window.location.href = href; }, 290);
+  });
+
+  /* Fade in on arrival */
+  document.body.style.opacity = "0";
+  window.addEventListener("pageshow", function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  });
+  /* Fallback immediate fade-in */
+  setTimeout(function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  }, 10);
+})();
+</script>
+<script src="assets/salamtea.js"></script>
+</body>
+</html>

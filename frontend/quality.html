@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quality | Salom Tea</title>
+
+<style>
+:root{
+  --green:#294d23;
+  --green2:#3d6c32;
+  --cream:#f7f1e8;
+  --cream2:#eee5d8;
+  --text:#22231d;
+  --muted:#6f685f;
+  --line:#d8d0c4;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--text);
+  font-family:Georgia,"Times New Roman",serif;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* HEADER */
+.header{
+  position:sticky;
+  z-index:10;
+  top:0;left:0;right:0;
+  height:88px;
+  display:grid;
+  grid-template-columns:1fr 150px 1fr;
+  align-items:center;
+  padding:0 34px;
+  background:rgba(247,241,232,.98);
+  border-bottom:1px solid var(--line);
+  font-family:Arial,Helvetica,sans-serif;
+}
+.nav{
+  display:flex;
+  gap:31px;
+  padding-top:0;
+  align-items:center;
+}
+.nav a{
+  font-size:12px;
+  color:#111;
+  white-space:nowrap;
+}
+.nav a.active{
+  color:#477138;
+  position:relative;
+}
+.nav a.active:after{
+  content:"";
+  position:absolute;
+  height:1px;
+  width:29px;
+  background:#4c7439;
+  left:0;
+  bottom:-20px;
+}
+.logo{
+  width:100px;
+  height:78px;
+  margin:auto;
+  object-fit:contain;
+}
+.actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:29px;
+  padding-top:0;
+}
+.actions svg{
+  width:21px;
+  height:21px;
+  fill:none;
+  stroke:#111;
+  stroke-width:1.25;
+}
+.action{
+  position:relative;
+  width:25px;height:25px;
+}
+.cart-count{
+  position:absolute;
+  top:-6px;right:-7px;
+  min-width:15px;height:15px;
+  padding:0 4px;
+  border-radius:20px;
+  background:#4d7c2e;
+  color:#fff;
+  font:9px/15px Arial,sans-serif;
+  text-align:center;
+}
+
+/* HERO */
+.hero{
+  min-height:340px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:
+    linear-gradient(to bottom,
+      rgba(248,244,237,.98) 0%,
+      rgba(248,244,237,.94) 40%,
+      rgba(248,244,237,.20) 72%,
+      rgba(248,244,237,0) 100%
+    ),
+    url("assets/tea-garden.jpg") center 78%/cover no-repeat;
+}
+.hero-content{
+  margin-top:0;
+  padding:40px 20px;
+  position:relative;
+  z-index:2;
+}
+.hero h1{
+  margin:0;
+  color:var(--green);
+  font-size:56px;
+  line-height:1;
+  letter-spacing:1px;
+}
+.subtitle{
+  margin:13px 0 0;
+  color:#686158;
+  font-size:20px;
+  font-style:italic;
+}
+.ornament{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  margin:10px auto 8px;
+}
+.ornament:before,.ornament:after{
+  content:"";
+  width:52px;height:1px;
+  background:#c9c0b4;
+}
+.leafmark{
+  color:#31732d;
+  font-family:Arial,sans-serif;
+  font-size:16px;
+  transform:rotate(-15deg);
+}
+
+/* COMMON */
+.wrap{
+  width:min(1100px,calc(100% - 60px));
+  margin:auto;
+}
+.section{
+  border-bottom:1px solid #ddd5ca;
+}
+.heading{
+  text-align:center;
+  color:var(--green);
+  padding:25px 0 18px;
+}
+.heading h2{
+  margin:0;
+  font-size:28px;
+  line-height:1.2;
+}
+.heading .ornament{
+  margin-top:9px;
+  margin-bottom:0;
+}
+.heading .ornament:before,
+.heading .ornament:after{
+  width:43px;
+}
+
+/* PROMISE */
+.promise-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  padding-bottom:25px;
+}
+.promise{
+  min-height:120px;
+  padding:16px 24px;
+  text-align:center;
+  border-right:1px solid var(--line);
+}
+.promise:last-child{border-right:0}
+.icon-circle{
+  width:63px;height:63px;
+  border:1px solid #6b7860;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  margin:0 auto 10px;
+  color:var(--green);
+}
+.icon-circle svg{
+  width:31px;height:31px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.2;
+}
+.promise h3{
+  margin:0 0 7px;
+  font-size:17px;
+  color:#213c1e;
+}
+.promise p{
+  margin:0;
+  font-size:13px;
+  line-height:1.5;
+}
+
+/* PROCESS */
+.process{padding-bottom:20px}
+.process-row{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+.process-row:before{
+  content:"";
+  position:absolute;
+  top:50px;
+  left:9%;
+  right:9%;
+  border-top:1px dotted #aaa297;
+}
+.process-item{
+  position:relative;
+  z-index:1;
+  text-align:center;
+}
+.process-img{
+  width:78px;height:78px;
+  margin:0 auto 9px;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid var(--cream);
+  box-shadow:0 0 0 1px #d2c9bc;
+  position:relative;
+  background:#ddd;
+}
+.process-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.badge{
+  position:absolute;
+  right:-1px;bottom:-1px;
+  width:28px;height:28px;
+  border-radius:50%;
+  background:#315e27;
+  color:white;
+  border:2px solid var(--cream);
+  display:grid;
+  place-items:center;
+}
+.badge svg{
+  width:13px;height:13px;
+  fill:none;stroke:currentColor;stroke-width:1.3;
+}
+.process-item h4{
+  margin:0 0 5px;
+  color:#253e20;
+  font-size:14px;
+}
+.process-item p{
+  margin:0 auto;
+  max-width:140px;
+  font-size:12.5px;
+  line-height:1.45;
+}
+.arrow{
+  position:absolute;
+  top:45px;right:-13px;
+  width:14px;height:14px;
+  border-radius:50%;
+  background:#315e27;
+  color:white;
+  font:11px/14px Arial,sans-serif;
+}
+
+/* REGIONS */
+.regions{padding-bottom:18px}
+.region-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+.region{
+  position:relative;
+  overflow:visible;
+  background:#eae1d3;
+  border-radius:7px;
+  padding-bottom:12px;
+}
+.region-img{
+  height:79px;
+  overflow:hidden;
+  border-radius:7px 7px 0 0;
+}
+.region-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.flag{
+  position:absolute;
+  z-index:2;
+  top:-24px;
+  left:50%;
+  transform:translateX(-50%);
+  width:42px;height:42px;
+  overflow:hidden;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 1px 5px rgba(0,0,0,.16);
+}
+.flag img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.region h3{
+  margin:10px 0 5px;
+  text-align:center;
+  font-size:16px;
+  color:#273e21;
+}
+.region p{
+  margin:0;
+  text-align:center;
+  font-size:13px;
+  line-height:1.4;
+}
+
+/* DIFFERENCE */
+.difference{padding-bottom:18px}
+.diff-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.diff{
+  text-align:center;
+  padding:0 17px;
+  border-right:1px solid var(--line);
+}
+.diff:last-child{border-right:0}
+.num{
+  color:#aaa47f;
+  font-size:27px;
+  line-height:1;
+  margin-bottom:4px;
+}
+.diff .icon-circle{
+  width:43px;height:43px;
+  margin-bottom:8px;
+}
+.diff .icon-circle svg{width:24px;height:24px}
+.diff h3{
+  margin:0 0 6px;
+  font-size:15px;
+  color:#294322;
+}
+.diff p{
+  margin:0;
+  font-size:13px;
+  line-height:1.4;
+}
+
+/* TEAS */
+.teas{padding-bottom:24px}
+.tea-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  padding:0 20px;
+}
+.tea{
+  overflow:hidden;
+  border:1px solid #cfc5b5;
+  border-radius:10px;
+  background:#f5eee4;
+  box-shadow:0 0 0 3px rgba(255,255,255,.45);
+}
+.tea-img{
+  height:74px;
+  overflow:hidden;
+}
+.tea-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+}
+.tea-info{
+  display:grid;
+  grid-template-columns:31px 1fr;
+  gap:8px;
+  align-items:center;
+  padding:8px 10px 9px;
+}
+.tea-icon{
+  width:29px;height:29px;
+  border:1px solid #7d8a72;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:#2f6228;
+}
+.tea-icon svg{
+  width:16px;height:16px;
+  fill:none;stroke:currentColor;stroke-width:1.2;
+}
+.tea h3{
+  margin:0 0 4px;
+  font-size:15px;
+  color:#243c20;
+}
+.tea p{
+  margin:0;
+  font-size:12px;
+}
+
+/* FOOTER / CLOSING */
+.closing{
+  min-height:105px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:
+    linear-gradient(to top,rgba(247,241,232,.55),rgba(247,241,232,.92)),
+    url("assets/tea-garden.jpg") center 75%/cover no-repeat;
+}
+.closing p{
+  margin:0;
+  color:#273d22;
+  font-size:18px;
+}
+.closing small{
+  display:block;
+  margin-top:2px;
+  font-size:11px;
+}
+
+/* MOBILE */
+@media(max-width:850px){
+  .header{
+    grid-template-columns:1fr 100px 1fr;
+    padding:0 20px;
+  }
+  .logo{width:90px;height:72px}
+  .nav{gap:14px;overflow:hidden}
+  .nav a{font-size:9px}
+  .actions{display:none}
+  .hero{min-height:280px}
+  .hero-content{margin-top:0}
+  .hero h1{font-size:40px}
+  .wrap{width:calc(100% - 34px)}
+  .promise-grid,.diff-grid{grid-template-columns:repeat(2,1fr)}
+  .promise:nth-child(2){border-right:0}
+  .process-row{
+    grid-template-columns:repeat(5,120px);
+    overflow-x:auto;
+    padding-bottom:5px;
+  }
+  .process-row:before{display:none}
+  .region-grid{gap:15px}
+  .tea-grid{gap:15px;padding:0 8px}
+}
+@media(max-width:560px){
+  .nav a:nth-child(n+4){display:none}
+  .hero{height:315px}
+  .hero-content{margin-top:108px}
+  .hero h1{font-size:32px}
+  .subtitle{font-size:14px}
+  .promise-grid,.diff-grid,.region-grid,.tea-grid{grid-template-columns:1fr}
+  .promise,.diff{
+    border-right:0;
+    border-bottom:1px solid var(--line);
+    padding:18px 10px;
+  }
+  .promise:last-child,.diff:last-child{border-bottom:0}
+  .region-grid{padding:0 35px}
+  .tea-grid{padding:0 35px}
+}
+
+  /* =========================================================
+     SALAMTEA — LUXURY ANIMATIONS (injected, non-destructive)
+     ========================================================= */
+
+  /* 1. Smooth scroll globally */
+  html { scroll-behavior: smooth; }
+
+  /* 2. Keyframes */
+  @keyframes st-logo-float-in {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0);      }
+  }
+
+  @keyframes st-fade-slide-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  /* 3. Logo entrance — nav logo (all pages) */
+  .logo {
+    animation: st-logo-float-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* 4. Hero logo entrance (index only — slightly slower for drama) */
+  .hero-logo {
+    animation: st-logo-float-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.05s both;
+  }
+
+  /* 5. Page main content fade + slide up */
+  main, .about-page, .page, .contact-wrap {
+    animation: st-fade-slide-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.08s both;
+  }
+
+  /* 6. Nav link hover transitions */
+  .menu a,
+  .nav a {
+    transition: color 0.28s ease, letter-spacing 0.28s ease;
+  }
+
+  /* 7. Nav icon hover */
+  .icon,
+  .action,
+  .actions a {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  .icon:hover,
+  .action:hover,
+  .actions a:hover {
+    transform: translateY(-2px);
+    opacity: 0.75;
+  }
+
+  /* 8. Buttons */
+  .btn,
+  button,
+  [type="submit"],
+  .submit-btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn:hover,
+  button:hover,
+  [type="submit"]:hover,
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(63,93,22,.18);
+  }
+
+  /* 9. Tea / product cards */
+  .product-card,
+  .promise,
+  .diff,
+  .region,
+  .feature {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover,
+  .promise:hover,
+  .diff:hover,
+  .region:hover,
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(45,40,30,.09);
+  }
+
+  /* 10. Feature icons & CTA icons */
+  .feature-icon,
+  .icon-circle {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .feature-icon:hover,
+  .icon-circle:hover {
+    transform: scale(1.12);
+    border-color: var(--green);
+  }
+
+  /* 11. Photo wrap (about page) */
+  .photo-wrap {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .photo-wrap:hover {
+    transform: translateY(-3px) scale(1.008);
+    box-shadow: 0 10px 32px rgba(45,40,30,.10);
+  }
+
+  /* 12. Pack rows (our-tea) */
+  .pack {
+    transition: background 0.22s ease, border-color 0.22s ease;
+  }
+  .pack:hover {
+    background: rgba(255,255,255,.55);
+    border-color: var(--green);
+  }
+
+  /* 13. Form inputs (contact) */
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    box-shadow: 0 0 0 3px rgba(63,93,22,.10);
+  }
+
+  /* 14. Region / flag images */
+  .region-img,
+  .region-img img {
+    transition: transform 0.35s ease;
+  }
+  .region:hover .region-img img {
+    transform: scale(1.04);
+  }
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT US</a>
+    <a href="#process">OUR TEA</a>
+    <a href="quality.html" class="active">QUALITY</a>
+    <a href="contact-us.html">CONTACT US</a>
+  </nav>
+
+  <a href="index.html">
+    <img class="logo" src="assets/logo.png" alt="Salom Tea">
+  </a>
+
+  <div class="actions">
+    <a class="action" href="#" aria-label="Search">
+      <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+    </a>
+    <a class="action" href="#" aria-label="Account">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21c.7-4.1 3.4-6.2 8-6.2s7.3 2.1 8 6.2"/></svg>
+    </a>
+    <a class="action" href="#" aria-label="Cart">
+      <svg viewBox="0 0 24 24"><path d="M3 5h2l2.2 10.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 1.9-1.5L21 8H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>QUALITY</h1>
+    <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+    <p class="subtitle">Pure Tea. Carefully Selected. Simply Better.</p>
+  </div>
+</section>
+
+<main>
+
+<section class="section">
+  <div class="wrap">
+    <div class="heading">
+      <h2>Our Quality Promise</h2>
+      <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+    </div>
+
+    <div class="promise-grid">
+      <article class="promise">
+        <div class="icon-circle">
+          <svg viewBox="0 0 32 32"><path d="M16 28V10"/><path d="M16 15c-5-1-8-4-8-8 5 0 8 3 8 8Z"/><path d="M16 20c5-1 8-4 8-8-5 0-8 3-8 8Z"/><path d="M16 10c0-4 2-7 5-9 1 5-1 8-5 9Z"/></svg>
+        </div>
+        <h3>Carefully Selected</h3>
+        <p>Quality leaves<br>selected for our blends.</p>
+      </article>
+
+      <article class="promise">
+        <div class="icon-circle">
+          <svg viewBox="0 0 32 32"><path d="M6 14h18v8a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4v-8Z"/><path d="M24 17h2a3 3 0 0 1 0 6h-2"/><path d="M12 9c-2-2 2-3 0-6"/><path d="M18 9c-2-2 2-3 0-6"/><path d="M5 28h22"/></svg>
+        </div>
+        <h3>Rich &amp; Authentic</h3>
+        <p>Balanced taste, aroma<br>and colour in every cup.</p>
+      </article>
+
+      <article class="promise">
+        <div class="icon-circle">
+          <svg viewBox="0 0 32 32"><path d="M8 25c2-8 7-13 15-16 0 8-5 14-15 16Z"/><path d="M7 27c3-5 7-8 12-10"/><path d="M18 25c2-6 6-9 11-10 0 6-4 10-11 10Z"/></svg>
+        </div>
+        <h3>Pure &amp; Natural</h3>
+        <p>No unnecessary additives<br>or compromise.</p>
+      </article>
+
+      <article class="promise">
+        <div class="icon-circle">
+          <svg viewBox="0 0 32 32"><path d="M16 4l10 4v7c0 6-4 10-10 13C10 25 6 21 6 15V8l10-4Z"/><path d="m11 16 3 3 7-8"/></svg>
+        </div>
+        <h3>Consistent Quality</h3>
+        <p>The same trusted taste,<br>cup after cup.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="heading">
+      <h2>From the Finest Tea Gardens to Your Cup</h2>
+      <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+    </div>
+
+    <div class="process-row">
+      <article class="process-item">
+        <div class="process-img">
+          <img src="assets/tea-garden.jpg" alt="Tea gardens">
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M5 8h14v12H5z"/><path d="M8 8V5h8v3"/></svg></span>
+        </div>
+        <h4>TEA GARDENS</h4>
+        <p>Grown in ideal climates.</p>
+        <span class="arrow">›</span>
+      </article>
+
+      <article class="process-item">
+        <div class="process-img">
+          <img src="assets/selection.jpg" alt="Tea selection">
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M12 20V7"/><path d="M12 13c-4 0-6-2-6-5 4 0 6 2 6 5Z"/><path d="M12 16c4 0 6-2 6-5-4 0-6 2-6 5Z"/></svg></span>
+        </div>
+        <h4>SELECTION</h4>
+        <p>Handpicked and carefully selected.</p>
+        <span class="arrow">›</span>
+      </article>
+
+      <article class="process-item">
+        <div class="process-img">
+          <img src="assets/blending.jpg" alt="Tea blending">
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M5 10h14v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7Z"/><path d="M19 13h1.5a2.5 2.5 0 0 1 0 5H19"/></svg></span>
+        </div>
+        <h4>BLENDING</h4>
+        <p>Expertly blended for perfect taste.</p>
+        <span class="arrow">›</span>
+      </article>
+
+      <article class="process-item">
+        <div class="process-img">
+          <img src="assets/packing.jpg" alt="Tea packing">
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M6 7h12v14H6z"/><path d="M9 7V4h6v3"/></svg></span>
+        </div>
+        <h4>PACKING</h4>
+        <p>Packed to preserve freshness &amp; aroma.</p>
+        <span class="arrow">›</span>
+      </article>
+
+      <article class="process-item">
+        <div class="process-img">
+          <img src="assets/your-cup.jpg" alt="Tea cup">
+          <span class="badge"><svg viewBox="0 0 24 24"><path d="M5 10h14v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7Z"/><path d="M19 13h1.5a2.5 2.5 0 0 1 0 5H19"/></svg></span>
+        </div>
+        <h4>YOUR CUP</h4>
+        <p>Delivered for your perfect tea experience.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section regions" id="legacy">
+  <div class="wrap">
+    <div class="heading">
+      <h2>Sourced from the World's Finest Tea Regions</h2>
+      <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+    </div>
+
+    <div class="region-grid">
+      <article class="region">
+        <div class="flag"><img src="assets/china-flag.png" alt="China flag"></div>
+        <div class="region-img"><img src="assets/china.jpg" alt="Tea gardens in China"></div>
+        <h3>CHINA</h3>
+        <p>Distinctive character<br>and refined flavour.</p>
+      </article>
+
+      <article class="region">
+        <div class="flag"><img src="assets/vietnam-flag.png" alt="Vietnam flag"></div>
+        <div class="region-img"><img src="assets/vietnam.jpg" alt="Tea gardens in Vietnam"></div>
+        <h3>VIETNAM</h3>
+        <p>Sourced for freshness<br>and balanced taste.</p>
+      </article>
+
+      <article class="region">
+        <div class="flag"><img src="assets/kenya-flag.png" alt="Kenya flag"></div>
+        <div class="region-img"><img src="assets/kenya.jpg" alt="Tea region in Kenya"></div>
+        <h3>KENYA</h3>
+        <p>Rich colour, strength<br>and bold character.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section difference">
+  <div class="wrap">
+    <div class="heading">
+      <h2>What Makes Our Tea Different?</h2>
+      <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+    </div>
+
+    <div class="diff-grid">
+      <article class="diff">
+        <div class="num">01</div>
+        <div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M16 28V11"/><path d="M16 17c-5 0-8-3-8-8 5 0 8 3 8 8Z"/><path d="M16 22c5 0 8-3 8-8-5 0-8 3-8 8Z"/></svg></div>
+        <h3>Leaf Selection</h3>
+        <p>Carefully selected<br>by experts.</p>
+      </article>
+
+      <article class="diff">
+        <div class="num">02</div>
+        <div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M6 14h18v8a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4v-8Z"/><path d="M24 17h2a3 3 0 0 1 0 6h-2"/><path d="M12 9c-2-2 2-3 0-6"/><path d="M18 9c-2-2 2-3 0-6"/></svg></div>
+        <h3>Expert Blending</h3>
+        <p>Balanced flavour,<br>rich aroma.</p>
+      </article>
+
+      <article class="diff">
+        <div class="num">03</div>
+        <div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M8 25c2-8 7-13 15-16 0 8-5 14-15 16Z"/><path d="M7 27c3-5 7-8 12-10"/><path d="M18 25c2-6 6-9 11-10 0 6-4 10-11 10Z"/></svg></div>
+        <h3>Fresh Packing</h3>
+        <p>Locked in freshness<br>and natural goodness.</p>
+      </article>
+
+      <article class="diff">
+        <div class="num">04</div>
+        <div class="icon-circle"><svg viewBox="0 0 32 32"><path d="M16 4l10 4v7c0 6-4 10-10 13C10 25 6 21 6 15V8l10-4Z"/><path d="m11 16 3 3 7-8"/></svg></div>
+        <h3>Trusted Since 1955</h3>
+        <p>Decades of experience<br>in every blend.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section teas" id="contact">
+  <div class="wrap">
+    <div class="heading">
+      <h2>Our Teas, Our Commitment</h2>
+    </div>
+
+    <div class="tea-grid">
+      <article class="tea">
+        <div class="tea-img"><img src="assets/black-tea.jpg" alt="Black Tea"></div>
+        <div class="tea-info">
+          <div class="tea-icon"><svg viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M12 14c-4 0-6-2-6-5 4 0 6 2 6 5Z"/><path d="M12 17c4 0 6-2 6-5-4 0-6 2-6 5Z"/></svg></div>
+          <div><h3>Black Tea</h3><p>Rich taste &amp; strong character.</p></div>
+        </div>
+      </article>
+
+      <article class="tea">
+        <div class="tea-img"><img src="assets/green-tea.jpg" alt="Green Tea"></div>
+        <div class="tea-info">
+          <div class="tea-icon"><svg viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M12 14c-4 0-6-2-6-5 4 0 6 2 6 5Z"/><path d="M12 17c4 0 6-2 6-5-4 0-6 2-6 5Z"/></svg></div>
+          <div><h3>Green Tea</h3><p>Fresh, natural &amp; revitalizing.</p></div>
+        </div>
+      </article>
+
+      <article class="tea">
+        <div class="tea-img"><img src="assets/cardamom-tea.jpg" alt="Elaichi Cardamom Tea"></div>
+        <div class="tea-info">
+          <div class="tea-icon"><svg viewBox="0 0 24 24"><path d="M12 21V9"/><path d="M12 14c-4 0-6-2-6-5 4 0 6 2 6 5Z"/><path d="M12 17c4 0 6-2 6-5-4 0-6 2-6 5Z"/></svg></div>
+          <div><h3>Elaichi (Cardamom) Tea</h3><p>Aromatic, refreshing &amp; soothing.</p></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div>
+    <p>Salamtea — A Matter of Good Taste, since 1955.</p>
+    <small>Quality tea, carefully selected and blended for you.</small>
+    <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+  </div>
+</section>
+
+</main>
+<script>
+/* Salamtea — page transition JS (non-destructive) */
+(function(){
+  /* Intercept internal nav clicks for a smooth leave transition */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[href]");
+    if(!a) return;
+    var href = a.getAttribute("href");
+    /* Only handle same-origin, non-anchor, non-blank links */
+    if(!href || href.startsWith("#") || href.startsWith("http") ||
+       href.startsWith("javascript") || a.target === "_blank") return;
+    e.preventDefault();
+    document.body.style.transition = "opacity 0.28s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function(){ window.location.href = href; }, 290);
+  });
+
+  /* Fade in on arrival */
+  document.body.style.opacity = "0";
+  window.addEventListener("pageshow", function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  });
+  /* Fallback immediate fade-in */
+  setTimeout(function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  }, 10);
+})();
+</script>
+<script src="assets/salamtea.js"></script>
+</body>
+</html>

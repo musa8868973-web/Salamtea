@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Tea — Salamtea</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+:root{
+  --cream:#f6f1e8;
+  --cream2:#eee8dc;
+  --green:#405d18;
+  --dark:#25251f;
+  --line:#d8d0c2;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  background:var(--cream);
+  color:var(--dark);
+  font-family:Montserrat,Arial,sans-serif;
+}
+
+/* NAVBAR */
+header{
+  height:80px;
+  border-bottom:1px solid var(--line);
+  background:rgba(246,241,232,.98);
+  position:relative;
+  z-index:10;
+}
+
+.nav{
+  width:min(1200px,96%);
+  height:100%;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+}
+
+.menu{
+  display:flex;
+  gap:28px;
+  list-style:none;
+}
+
+.menu a{
+  text-decoration:none;
+  color:#30302a;
+  font-size:12px;
+  font-weight:500;
+}
+
+.menu a.active{
+  color:var(--green);
+  position:relative;
+}
+
+.menu a.active:after{
+  content:"";
+  position:absolute;
+  width:20px;
+  height:1px;
+  background:var(--green);
+  left:50%;
+  transform:translateX(-50%);
+  bottom:-13px;
+}
+
+.logo{
+  width:82px;
+  height:65px;
+  object-fit:contain;
+  justify-self:center;
+}
+
+.icons{
+  justify-self:end;
+  display:flex;
+  gap:24px;
+  align-items:center;
+}
+
+.icon{
+  width:20px;
+  height:20px;
+  position:relative;
+  color:#33332e;
+}
+
+.search{
+  width:14px;
+  height:14px;
+  border:1.4px solid currentColor;
+  border-radius:50%;
+  position:absolute;
+  top:1px;
+  left:1px;
+}
+
+.search:after{
+  content:"";
+  width:6px;
+  height:1px;
+  background:currentColor;
+  position:absolute;
+  right:-5px;
+  bottom:-2px;
+  transform:rotate(48deg);
+}
+
+.person:before{
+  content:"";
+  width:8px;
+  height:8px;
+  border:1.3px solid currentColor;
+  border-radius:50%;
+  position:absolute;
+  left:6px;
+  top:0;
+}
+
+.person:after{
+  content:"";
+  width:16px;
+  height:8px;
+  border:1.3px solid currentColor;
+  border-bottom:0;
+  border-radius:10px 10px 0 0;
+  position:absolute;
+  left:2px;
+  bottom:1px;
+}
+
+.cart:before{
+  content:"";
+  position:absolute;
+  left:2px;
+  top:5px;
+  width:15px;
+  height:9px;
+  border:1.4px solid currentColor;
+  border-top:0;
+  transform:skew(-8deg);
+}
+
+.cart:after{
+  content:"•  •";
+  white-space:pre;
+  position:absolute;
+  left:3px;
+  bottom:-5px;
+  font-size:12px;
+  letter-spacing:3px;
+}
+
+.badge{
+  position:absolute;
+  top:-6px;
+  right:-7px;
+  width:14px;
+  height:14px;
+  border-radius:50%;
+  background:var(--green);
+  color:white;
+  font-size:8px;
+  display:grid;
+  place-items:center;
+  z-index:2;
+}
+
+/* PAGE */
+.page{
+  min-height:auto;
+  padding:52px 24px 100px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(to bottom,rgba(246,241,232,.98) 0%,rgba(246,241,232,.97) 52%,rgba(246,241,232,.08) 100%),
+    url("assets/tea-garden.jpg") center bottom / cover no-repeat;
+}
+
+.page-title{
+  text-align:center;
+  font-family:"Cormorant Garamond",serif;
+  font-size:48px;
+  font-weight:600;
+  color:#1f2b18;
+  margin-bottom:12px;
+}
+
+.title-divider{
+  width:52px;
+  margin:0 auto 20px;
+  display:flex;
+  justify-content:center;
+  color:var(--green);
+  font-size:17px;
+}
+
+/* PRODUCTS */
+.products{
+  width:min(1160px,100%);
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  position:relative;
+  z-index:2;
+}
+
+.product-card{
+  background:rgba(250,247,241,.58);
+  border:1px solid #ddd5c8;
+  border-radius:7px;
+  padding:16px 14px 18px;
+  box-shadow:0 1px 4px rgba(45,40,30,.025);
+}
+
+.product-image{
+  width:100%;
+  aspect-ratio:1.45 / 1;
+  object-fit:cover;
+  border-radius:5px;
+  display:block;
+}
+
+.product-divider{
+  width:44px;
+  margin:7px auto 4px;
+  text-align:center;
+  color:var(--green);
+  font-size:12px;
+}
+
+.product-name{
+  text-align:center;
+  font-family:"Cormorant Garamond",serif;
+  font-size:20px;
+  font-weight:600;
+  min-height:22px;
+  margin-bottom:9px;
+}
+
+/* PACK OPTIONS */
+.packs{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.pack{
+  min-height:38px;
+  border:1px solid #d9d2c6;
+  background:rgba(255,255,255,.25);
+  border-radius:3px;
+  display:grid;
+  grid-template-columns:20px 31px 1fr auto;
+  align-items:center;
+  gap:3px;
+  padding:4px 6px;
+}
+
+.pack-icon{
+  color:#69765b;
+  font-size:12px;
+  text-align:center;
+}
+
+.weight{
+  font-family:"Cormorant Garamond",serif;
+  font-size:15px;
+  font-weight:600;
+}
+
+.pack-type{
+  font-size:11px;
+  color:#55554e;
+  white-space:nowrap;
+}
+
+.price{
+  font-family:"Cormorant Garamond",serif;
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+/* BUTTONS */
+.btn{
+  width:100%;
+  height:40px;
+  margin-top:10px;
+  border-radius:4px;
+  font-family:Montserrat,Arial,sans-serif;
+  font-size:11px;
+  letter-spacing:.1px;
+  cursor:pointer;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:6px;
+}
+
+.cart-btn{
+  border:1px solid var(--green);
+  background:var(--green);
+  color:#fff;
+}
+
+.whatsapp-btn{
+  border:1px solid #aaa99d;
+  background:rgba(255,255,255,.3);
+  color:#30352a;
+}
+
+.btn-icon{
+  font-size:11px;
+}
+
+/* MOBILE */
+@media(max-width:860px){
+  header{height:auto;padding:9px 0}
+
+  .menu{
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .menu a{font-size:8px}
+
+  .logo{
+    width:70px;
+    height:56px;
+  }
+
+  .icons{gap:10px}
+
+  .page{
+    padding:30px 10px 150px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    max-width:none;
+    gap:16px;
+  }
+
+  .product-card{
+    padding:10px;
+  }
+
+  .product-image{
+    aspect-ratio:1.6 / 1;
+  }
+}
+
+@media(max-width:560px){
+  .menu{display:none}
+
+  .nav:before{
+    content:"MENU";
+    font-size:9px;
+    letter-spacing:1px;
+    color:var(--green);
+  }
+
+  .page-title{font-size:35px}
+}
+
+  /* =========================================================
+     SALAMTEA — LUXURY ANIMATIONS (injected, non-destructive)
+     ========================================================= */
+
+  /* 1. Smooth scroll globally */
+  html { scroll-behavior: smooth; }
+
+  /* 2. Keyframes */
+  @keyframes st-logo-float-in {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0);      }
+  }
+
+  @keyframes st-fade-slide-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  /* 3. Logo entrance — nav logo (all pages) */
+  .logo {
+    animation: st-logo-float-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* 4. Hero logo entrance (index only — slightly slower for drama) */
+  .hero-logo {
+    animation: st-logo-float-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.05s both;
+  }
+
+  /* 5. Page main content fade + slide up */
+  main, .about-page, .page, .contact-wrap {
+    animation: st-fade-slide-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.08s both;
+  }
+
+  /* 6. Nav link hover transitions */
+  .menu a,
+  .nav a {
+    transition: color 0.28s ease, letter-spacing 0.28s ease;
+  }
+
+  /* 7. Nav icon hover */
+  .icon,
+  .action,
+  .actions a {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  .icon:hover,
+  .action:hover,
+  .actions a:hover {
+    transform: translateY(-2px);
+    opacity: 0.75;
+  }
+
+  /* 8. Buttons */
+  .btn,
+  button,
+  [type="submit"],
+  .submit-btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn:hover,
+  button:hover,
+  [type="submit"]:hover,
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(63,93,22,.18);
+  }
+
+  /* 9. Tea / product cards */
+  .product-card,
+  .promise,
+  .diff,
+  .region,
+  .feature {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover,
+  .promise:hover,
+  .diff:hover,
+  .region:hover,
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(45,40,30,.09);
+  }
+
+  /* 10. Feature icons & CTA icons */
+  .feature-icon,
+  .icon-circle {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .feature-icon:hover,
+  .icon-circle:hover {
+    transform: scale(1.12);
+    border-color: var(--green);
+  }
+
+  /* 11. Photo wrap (about page) */
+  .photo-wrap {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .photo-wrap:hover {
+    transform: translateY(-3px) scale(1.008);
+    box-shadow: 0 10px 32px rgba(45,40,30,.10);
+  }
+
+  /* 12. Pack rows (our-tea) */
+  .pack {
+    transition: background 0.22s ease, border-color 0.22s ease;
+  }
+  .pack:hover {
+    background: rgba(255,255,255,.55);
+    border-color: var(--green);
+  }
+
+  /* 13. Form inputs (contact) */
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    box-shadow: 0 0 0 3px rgba(63,93,22,.10);
+  }
+
+  /* 14. Region / flag images */
+  .region-img,
+  .region-img img {
+    transition: transform 0.35s ease;
+  }
+  .region:hover .region-img img {
+    transform: scale(1.04);
+  }
+
+  /* Selected pack highlight */
+  .pack.pack-active {
+    background: rgba(63,93,22,.08) !important;
+    border-color: var(--green) !important;
+  }
+  .pack.pack-active .price { color: var(--green); }
+  .pack { cursor: pointer; }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+
+    <ul class="menu">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="about.html">ABOUT US</a></li>
+      <li><a href="our-tea.html" class="active">OUR TEA</a></li>
+      <li><a href="quality.html">QUALITY</a></li>
+      <li><a href="contact-us.html">CONTACT US</a></li>
+    </ul>
+
+    <img class="logo" src="assets/logo.png" alt="Salamtea — Since 1955">
+
+    <div class="icons">
+      <span class="icon"><span class="search"></span></span>
+      <span class="icon"><span class="person"></span></span>
+      <span class="icon cart"><span class="badge">0</span></span>
+    </div>
+
+  </nav>
+</header>
+
+
+<main class="page">
+
+  <h1 class="page-title">Our Tea</h1>
+  <div class="title-divider">♥</div>
+
+
+  <section class="products">
+
+    <!-- BLACK TEA -->
+    <article class="product-card">
+
+      <img
+        class="product-image"
+        src="assets/black-tea.jpg"
+        alt="Salamtea Black Tea">
+
+      <div class="product-divider">♥</div>
+
+      <h2 class="product-name">Black Tea</h2>
+
+      <div class="packs">
+
+        <div class="pack" data-size="250g">
+          <span class="pack-icon">♧</span>
+          <span class="weight">250g</span>
+          <span class="pack-type">Everyday Pack</span>
+          <span class="price">450Rs</span>
+        </div>
+
+        <div class="pack" data-size="500g">
+          <span class="pack-icon">♧</span>
+          <span class="weight">500g</span>
+          <span class="pack-type">Family Pack</span>
+          <span class="price">850Rs</span>
+        </div>
+
+        <div class="pack" data-size="1kg">
+          <span class="pack-icon">♧</span>
+          <span class="weight">1kg</span>
+          <span class="pack-type">Household Pack</span>
+          <span class="price">1600Rs</span>
+        </div>
+
+        <div class="pack" data-size="2kg">
+          <span class="pack-icon">♧</span>
+          <span class="weight">2kg</span>
+          <span class="pack-type">Bulk Pack</span>
+          <span class="price">3100Rs</span>
+        </div>
+
+      </div>
+
+      <button class="btn cart-btn" onclick="addToCart('Black Tea')">
+        <span class="btn-icon">🛒</span> ADD TO CART
+      </button>
+
+      <button class="btn whatsapp-btn" onclick="orderWhatsApp('Black Tea')">
+        <span class="btn-icon">◉</span> ORDER ON WHATSAPP
+      </button>
+
+    </article>
+
+
+    <!-- GREEN TEA -->
+    <article class="product-card">
+
+      <img
+        class="product-image"
+        src="assets/green-tea.jpg"
+        alt="Salamtea Green Tea">
+
+      <div class="product-divider">♥</div>
+
+      <h2 class="product-name">Green Tea</h2>
+
+      <div class="packs">
+
+        <div class="pack" data-size="250g">
+          <span class="pack-icon">♧</span>
+          <span class="weight">250g</span>
+          <span class="pack-type">Everyday Pack</span>
+          <span class="price">500Rs</span>
+        </div>
+
+        <div class="pack" data-size="500g">
+          <span class="pack-icon">♧</span>
+          <span class="weight">500g</span>
+          <span class="pack-type">Family Pack</span>
+          <span class="price">950Rs</span>
+        </div>
+
+        <div class="pack" data-size="1kg">
+          <span class="pack-icon">♧</span>
+          <span class="weight">1kg</span>
+          <span class="pack-type">Household Pack</span>
+          <span class="price">1800Rs</span>
+        </div>
+
+        <div class="pack" data-size="2kg">
+          <span class="pack-icon">♧</span>
+          <span class="weight">2kg</span>
+          <span class="pack-type">Bulk Pack</span>
+          <span class="price">3500Rs</span>
+        </div>
+
+      </div>
+
+      <button class="btn cart-btn" onclick="addToCart('Green Tea')">
+        <span class="btn-icon">🛒</span> ADD TO CART
+      </button>
+
+      <button class="btn whatsapp-btn" onclick="orderWhatsApp('Green Tea')">
+        <span class="btn-icon">◉</span> ORDER ON WHATSAPP
+      </button>
+
+    </article>
+
+
+    <!-- CARDAMOM TEA -->
+    <article class="product-card">
+
+      <img
+        class="product-image"
+        src="assets/cardamom-tea.jpg"
+        alt="Salamtea Ilaichi Cardamom Tea">
+
+      <div class="product-divider">♥</div>
+
+      <h2 class="product-name">Ilaichi (Cardamom) Tea</h2>
+
+      <div class="packs">
+
+        <div class="pack" data-size="250g">
+          <span class="pack-icon">♧</span>
+          <span class="weight">250g</span>
+          <span class="pack-type">Everyday Pack</span>
+          <span class="price">550Rs</span>
+        </div>
+
+        <div class="pack" data-size="500g">
+          <span class="pack-icon">♧</span>
+          <span class="weight">500g</span>
+          <span class="pack-type">Family Pack</span>
+          <span class="price">1050Rs</span>
+        </div>
+
+        <div class="pack" data-size="1kg">
+          <span class="pack-icon">♧</span>
+          <span class="weight">1kg</span>
+          <span class="pack-type">Household Pack</span>
+          <span class="price">2000Rs</span>
+        </div>
+
+        <div class="pack" data-size="2kg">
+          <span class="pack-icon">♧</span>
+          <span class="weight">2kg</span>
+          <span class="pack-type">Bulk Pack</span>
+          <span class="price">3900Rs</span>
+        </div>
+
+      </div>
+
+      <button class="btn cart-btn" onclick="addToCart('Ilaichi (Cardamom) Tea')">
+        <span class="btn-icon">🛒</span> ADD TO CART
+      </button>
+
+      <button class="btn whatsapp-btn" onclick="orderWhatsApp('Ilaichi (Cardamom) Tea')">
+        <span class="btn-icon">◉</span> ORDER ON WHATSAPP
+      </button>
+
+    </article>
+
+  </section>
+
+</main>
+
+
+<script src="assets/salamtea.js"></script>
+<script>
+  // Pack selection state per card
+  const _selected = {};   // { [teaVariety]: packSize }
+
+  function _selectPack(card, teaVariety, packSize) {
+    _selected[teaVariety] = packSize;
+    card.querySelectorAll('.pack').forEach(p => {
+      p.classList.toggle('pack-active', p.dataset.size === packSize);
+    });
+  }
+
+  // Attach click listeners to each pack row
+  document.querySelectorAll('.product-card').forEach(card => {
+    const variety = card.querySelector('.product-name').textContent.trim();
+    card.querySelectorAll('.pack').forEach(pack => {
+      const size = pack.dataset.size;
+      pack.style.cursor = 'pointer';
+      pack.addEventListener('click', () => _selectPack(card, variety, size));
+    });
+  });
+
+  function addToCart(product) {
+    const size = _selected[product];
+    stAddToCart(product, size);   // size may be undefined → triggers picker
+  }
+
+  function orderWhatsApp(product) {
+    const size = _selected[product];
+    stOrderWhatsApp(product, size);
+  }
+</script>
+
+<script>
+/* Salamtea — page transition JS (non-destructive) */
+(function(){
+  /* Intercept internal nav clicks for a smooth leave transition */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[href]");
+    if(!a) return;
+    var href = a.getAttribute("href");
+    /* Only handle same-origin, non-anchor, non-blank links */
+    if(!href || href.startsWith("#") || href.startsWith("http") ||
+       href.startsWith("javascript") || a.target === "_blank") return;
+    e.preventDefault();
+    document.body.style.transition = "opacity 0.28s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function(){ window.location.href = href; }, 290);
+  });
+
+  /* Fade in on arrival */
+  document.body.style.opacity = "0";
+  window.addEventListener("pageshow", function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  });
+  /* Fallback immediate fade-in */
+  setTimeout(function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  }, 10);
+})();
+</script>
+</body>
+</html>

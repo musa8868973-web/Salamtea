@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | Salom Tea</title>
+
+<style>
+:root{
+  --green:#315d27;
+  --green-dark:#294b22;
+  --cream:#f7f1e8;
+  --cream2:#eee5d9;
+  --line:#ddd4c7;
+  --text:#29291f;
+  --muted:#6d685f;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  color:var(--text);
+  background:var(--cream);
+  font-family:Georgia,"Times New Roman",serif;
+}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+
+/* HEADER */
+.header{
+  position:sticky;
+  z-index:20;
+  top:0;left:0;right:0;
+  height:80px;
+  display:grid;
+  grid-template-columns:1fr 120px 1fr;
+  align-items:center;
+  padding:0 26px;
+  background:rgba(247,241,232,.98);
+  border-bottom:1px solid var(--line);
+  font-family:Arial,Helvetica,sans-serif;
+}
+.nav{
+  display:flex;
+  gap:25px;
+  padding-top:0;
+  align-items:center;
+}
+.nav a{
+  font-size:11px;
+  color:#111;
+  white-space:nowrap;
+}
+.nav a.active{
+  color:#477238;
+  position:relative;
+}
+.nav a.active:after{
+  content:"";
+  position:absolute;
+  width:23px;height:1px;
+  background:#547a45;
+  left:0;bottom:-12px;
+}
+.logo{
+  width:78px;
+  height:70px;
+  margin:auto;
+  object-fit:contain;
+}
+.actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:23px;
+  padding-top:0;
+}
+.action{
+  position:relative;
+  width:19px;height:19px;
+}
+.action svg{
+  width:19px;height:19px;
+  fill:none;
+  stroke:#111;
+  stroke-width:1.25;
+}
+.cart-count{
+  position:absolute;
+  right:-7px;top:-6px;
+  min-width:12px;height:12px;
+  padding:0 3px;
+  border-radius:50%;
+  background:#4f7e2e;
+  color:#fff;
+  font:7px/12px Arial,sans-serif;
+  text-align:center;
+}
+
+/* HERO */
+.hero{
+  min-height:220px;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:
+    linear-gradient(to bottom,
+      rgba(248,244,237,.98) 0%,
+      rgba(248,244,237,.94) 47%,
+      rgba(248,244,237,.28) 76%,
+      rgba(248,244,237,0) 100%
+    ),
+    url("assets/tea-garden.jpg") center 78%/cover no-repeat;
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  margin-top:0;
+  padding:30px 20px;
+}
+.hero h1{
+  margin:0;
+  color:var(--green-dark);
+  font-size:36px;
+  line-height:1.05;
+  letter-spacing:.2px;
+}
+.ornament{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:7px;
+  margin:6px auto 7px;
+}
+.ornament:before,.ornament:after{
+  content:"";
+  width:29px;height:1px;
+  background:#c9c0b4;
+}
+.leafmark{
+  color:#33742e;
+  font:10px Arial,sans-serif;
+  transform:rotate(-15deg);
+}
+.subtitle{
+  margin:0;
+  color:#6d665d;
+  font-size:11px;
+  font-style:italic;
+}
+
+/* MAIN FLOATING CONTACT AREA */
+.contact-wrap{
+  width:min(900px,calc(100% - 48px));
+  margin:-28px auto 0;
+  padding-bottom:40px;
+  position:relative;
+  z-index:5;
+}
+.contact-panel{
+  background:rgba(248,242,233,.98);
+  border:1px solid #e0d7ca;
+  border-radius:7px;
+  box-shadow:0 1px 5px rgba(70,60,45,.03);
+}
+
+/* CONTACT INFO */
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+}
+.info-card{
+  min-height:120px;
+  text-align:center;
+  padding:16px 12px 14px;
+  border-right:1px solid var(--line);
+}
+.info-card:last-child{border-right:0}
+.info-icon{
+  width:40px;height:40px;
+  border:1px solid #6b8061;
+  border-radius:50%;
+  margin:0 auto 6px;
+  display:grid;
+  place-items:center;
+  color:var(--green);
+}
+.info-icon svg{
+  width:22px;height:22px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.25;
+}
+.info-card h3{
+  margin:0 0 6px;
+  color:#29451f;
+  font-size:13px;
+  font-weight:normal;
+}
+.info-card p{
+  margin:0;
+  font-size:11px;
+  line-height:1.45;
+}
+.info-card strong{
+  font-size:12px;
+}
+
+/* LOWER GRID */
+.lower{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  padding:7px 0 0;
+}
+.box{
+  border:1px solid #e0d7ca;
+  border-radius:7px;
+  background:rgba(248,242,233,.98);
+  min-height:175px;
+  padding:9px 12px;
+}
+.box-title{
+  text-align:center;
+  color:#29451f;
+  font-size:15px;
+  margin:0 0 12px;
+}
+.box-title:after{
+  content:"";
+  display:block;
+  width:22px;
+  height:1px;
+  margin:4px auto 0;
+  background:#d2c9bd;
+}
+
+/* FORM */
+.form-group{
+  position:relative;
+  margin-bottom:5px;
+}
+.form-group input,
+.form-group textarea{
+  width:100%;
+  border:1px solid #ddd4c8;
+  border-radius:3px;
+  background:#f8f2e9;
+  color:#333;
+  outline:none;
+  font-family:Arial,sans-serif;
+  font-size:12px;
+  padding:9px 10px 9px 28px;
+}
+.form-group textarea{
+  height:80px;
+  resize:none;
+}
+.form-group svg{
+  position:absolute;
+  left:8px;top:11px;
+  width:13px;height:13px;
+  fill:none;
+  stroke:#72746a;
+  stroke-width:1.2;
+}
+.send-btn,
+.whatsapp-btn{
+  width:100%;
+  height:38px;
+  border:0;
+  border-radius:3px;
+  background:#426d2b;
+  color:#fff;
+  cursor:pointer;
+  font:13px Arial,sans-serif;
+  letter-spacing:.1px;
+}
+.send-btn:hover,.whatsapp-btn:hover{background:#315c23}
+
+/* WHATSAPP */
+.whatsapp-box{
+  text-align:center;
+}
+.whatsapp-icon{
+  width:42px;height:42px;
+  margin:0 auto 8px;
+  color:#2e6428;
+}
+.whatsapp-icon svg{
+  width:100%;height:100%;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+}
+.whatsapp-box h3{
+  margin:0;
+  font-size:18px;
+  color:#29451f;
+}
+.whatsapp-box .ornament{margin:5px auto 8px}
+.whatsapp-box p{
+  font-size:13px;
+  line-height:1.5;
+  margin:0 auto 16px;
+  max-width:220px;
+}
+.whatsapp-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+}
+.whatsapp-btn svg{
+  width:10px;height:10px;
+  fill:none;stroke:#fff;stroke-width:1.4;
+}
+
+/* MAP */
+.map-box{
+  grid-column:1/-1;
+  min-height:122px;
+  padding:8px 12px 9px;
+}
+.map-content{
+  display:grid;
+  grid-template-columns:1.35fr .85fr;
+  gap:12px;
+  align-items:center;
+}
+.map{
+  height:130px;
+  border:1px solid #ddd4c8;
+  border-radius:3px;
+  overflow:hidden;
+  position:relative;
+  background:
+    linear-gradient(35deg,transparent 0 36%,rgba(255,255,255,.7) 37% 39%,transparent 40% 100%),
+    linear-gradient(120deg,transparent 0 60%,rgba(255,255,255,.75) 61% 63%,transparent 64%),
+    #e6e6de;
+}
+.map:before{
+  content:"";
+  position:absolute;
+  width:150px;height:150px;
+  right:12px;top:-44px;
+  border-radius:45%;
+  border:3px solid rgba(72,161,218,.55);
+  transform:rotate(28deg);
+}
+.map:after{
+  content:"";
+  position:absolute;
+  width:14px;height:18px;
+  left:50%;top:35%;
+  transform:translate(-50%,-50%);
+  border-radius:10px 10px 10px 0;
+  background:#315d27;
+  box-shadow:0 1px 3px rgba(0,0,0,.25);
+}
+.map-pin{
+  position:absolute;
+  left:50%;top:32%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  width:5px;height:5px;
+  border-radius:50%;
+  background:#fff;
+}
+.map-info{
+  font-size:12px;
+  line-height:1.55;
+}
+.map-info .location{
+  display:flex;
+  gap:7px;
+  margin-bottom:8px;
+}
+.map-info svg{
+  width:14px;height:14px;
+  flex:none;
+  fill:none;
+  stroke:#315d27;
+  stroke-width:1.25;
+}
+.map-info strong{
+  font-size:13px;
+  font-weight:normal;
+}
+.directions{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  border:1px solid #7d8b72;
+  border-radius:2px;
+  padding:8px 14px;
+  font:12px Arial,sans-serif;
+  color:#294b22;
+}
+.directions svg{
+  width:9px;height:9px;
+}
+
+/* SOCIAL */
+.social-box{
+  grid-column:1/-1;
+  min-height:65px;
+  padding:8px 35px 9px;
+}
+.social-title{
+  text-align:center;
+  color:#29451f;
+  font-size:15px;
+  margin:0 0 12px;
+}
+.social-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+.social-link{
+  height:40px;
+  border:1px solid #ddd4c8;
+  border-radius:4px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  font:13px Arial,sans-serif;
+}
+.social-link svg{
+  width:20px;height:20px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.4;
+}
+
+/* FOOTER */
+.footer{
+  min-height:84px;
+  margin-top:4px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  background:
+    linear-gradient(to top,rgba(247,241,232,.48),rgba(247,241,232,.9)),
+    url("assets/tea-garden.jpg") center 76%/cover no-repeat;
+}
+.footer p{
+  margin:0;
+  color:#314329;
+  font-size:16px;
+}
+.footer small{
+  display:block;
+  margin-top:2px;
+  font-size:9px;
+  font-style:italic;
+}
+.footer .ornament{margin-top:6px}
+
+/* RESPONSIVE */
+@media(max-width:700px){
+  .header{
+    grid-template-columns:1fr 80px 1fr;
+    padding:0 16px;
+  }
+  .nav{gap:13px;overflow:hidden}
+  .nav a{font-size:9px}
+  .actions{display:none}
+  .hero{min-height:190px}
+  .hero-content{margin-top:0}
+  .contact-wrap{width:calc(100% - 28px)}
+}
+@media(max-width:520px){
+  /* mobile */
+  .header{
+    height:70px;
+    grid-template-columns:1fr 78px;
+    padding:7px 17px 0;
+  }
+  .logo{
+    grid-column:2;
+    width:66px;
+    height:59px;
+  }
+  .nav{
+    gap:13px;
+    padding-top:20px;
+    overflow:hidden;
+  }
+  .nav a{
+    font-size:8px;
+  }
+  .nav a:nth-child(n+4){display:none}
+  .actions{
+    display:flex;
+    gap:14px;
+    padding-top:19px;
+  }
+  .actions .action{
+    width:15px;
+    height:15px;
+  }
+  .actions .action svg{
+    width:15px;
+    height:15px;
+  }
+  .cart-count{
+    min-width:10px;
+    height:10px;
+    line-height:10px;
+    font-size:6px;
+    right:-6px;
+    top:-5px;
+  }
+
+  .hero{
+    height:184px;
+  }
+  .hero-content{
+    margin-top:66px;
+  }
+  .hero h1{
+    font-size:25px;
+  }
+  .subtitle{
+    font-size:10px;
+  }
+
+  .contact-wrap{
+    width:min(420px,calc(100% - 48px));
+    margin:-29px auto 0;
+  }
+
+  .contact-panel{
+    border-radius:6px;
+  }
+
+  .info-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+  .info-card{
+    min-height:106px;
+    padding:10px 5px 7px;
+    border-right:1px solid var(--line);
+    border-bottom:0;
+  }
+  .info-card:nth-child(2){
+    border-right:1px solid var(--line);
+  }
+  .info-icon{
+    width:29px;
+    height:29px;
+    margin-bottom:6px;
+  }
+  .info-card h3{
+    font-size:11px;
+    margin-bottom:4px;
+  }
+  .info-card p{
+    font-size:9px;
+    line-height:1.35;
+  }
+  .info-card strong{
+    font-size:9px;
+  }
+
+  .lower{
+    grid-template-columns:1fr 1fr;
+    gap:7px;
+    padding-top:7px;
+  }
+  .box{
+    min-height:175px;
+    padding:8px 12px;
+    border-radius:7px;
+  }
+  .box-title{
+    font-size:13px;
+    margin-bottom:8px;
+  }
+
+  .form-group{
+    margin-bottom:5px;
+  }
+  .form-group input,
+  .form-group textarea{
+    font-size:11px;
+    padding:8px 8px 8px 24px;
+  }
+  .form-group textarea{
+    height:45px;
+  }
+  .send-btn,
+  .whatsapp-btn{
+    height:34px;
+    font-size:11px;
+  }
+
+  .whatsapp-icon{
+    width:29px;
+    height:29px;
+    margin-bottom:7px;
+  }
+  .whatsapp-box h3{
+    font-size:15px;
+  }
+  .whatsapp-box p{
+    font-size:11px;
+    max-width:200px;
+    margin-bottom:12px;
+  }
+
+  .map-box{
+    grid-column:1/-1;
+    min-height:122px;
+  }
+  .map-content{
+    grid-template-columns:1.35fr .85fr;
+    gap:12px;
+  }
+  .map{
+    height:83px;
+  }
+  .map-info{
+    font-size:10px;
+  }
+  .map-info strong{
+    font-size:11px;
+  }
+  .directions{
+    font-size:10px;
+    padding:6px 10px;
+  }
+
+  .social-box{
+    grid-column:1/-1;
+    min-height:65px;
+    padding:8px 35px 9px;
+  }
+  .social-title{
+    font-size:13px;
+    margin-bottom:8px;
+  }
+  .social-grid{
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+  }
+  .social-link{
+    height:34px;
+    font-size:11px;
+  }
+
+  .footer{
+    min-height:68px;
+    margin-top:4px;
+  }
+  .footer p{
+    font-size:14px;
+  }
+  .footer small{
+    font-size:10px;
+  }
+}
+
+  /* =========================================================
+     SALAMTEA — LUXURY ANIMATIONS (injected, non-destructive)
+     ========================================================= */
+
+  /* 1. Smooth scroll globally */
+  html { scroll-behavior: smooth; }
+
+  /* 2. Keyframes */
+  @keyframes st-logo-float-in {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0);      }
+  }
+
+  @keyframes st-fade-slide-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  /* 3. Logo entrance — nav logo (all pages) */
+  .logo {
+    animation: st-logo-float-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* 4. Hero logo entrance (index only — slightly slower for drama) */
+  .hero-logo {
+    animation: st-logo-float-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.05s both;
+  }
+
+  /* 5. Page main content fade + slide up */
+  main, .about-page, .page, .contact-wrap {
+    animation: st-fade-slide-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.08s both;
+  }
+
+  /* 6. Nav link hover transitions */
+  .menu a,
+  .nav a {
+    transition: color 0.28s ease, letter-spacing 0.28s ease;
+  }
+
+  /* 7. Nav icon hover */
+  .icon,
+  .action,
+  .actions a {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  .icon:hover,
+  .action:hover,
+  .actions a:hover {
+    transform: translateY(-2px);
+    opacity: 0.75;
+  }
+
+  /* 8. Buttons */
+  .btn,
+  button,
+  [type="submit"],
+  .submit-btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn:hover,
+  button:hover,
+  [type="submit"]:hover,
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(63,93,22,.18);
+  }
+
+  /* 9. Tea / product cards */
+  .product-card,
+  .promise,
+  .diff,
+  .region,
+  .feature {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover,
+  .promise:hover,
+  .diff:hover,
+  .region:hover,
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(45,40,30,.09);
+  }
+
+  /* 10. Feature icons & CTA icons */
+  .feature-icon,
+  .icon-circle {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .feature-icon:hover,
+  .icon-circle:hover {
+    transform: scale(1.12);
+    border-color: var(--green);
+  }
+
+  /* 11. Photo wrap (about page) */
+  .photo-wrap {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .photo-wrap:hover {
+    transform: translateY(-3px) scale(1.008);
+    box-shadow: 0 10px 32px rgba(45,40,30,.10);
+  }
+
+  /* 12. Pack rows (our-tea) */
+  .pack {
+    transition: background 0.22s ease, border-color 0.22s ease;
+  }
+  .pack:hover {
+    background: rgba(255,255,255,.55);
+    border-color: var(--green);
+  }
+
+  /* 13. Form inputs (contact) */
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    box-shadow: 0 0 0 3px rgba(63,93,22,.10);
+  }
+
+  /* 14. Region / flag images */
+  .region-img,
+  .region-img img {
+    transition: transform 0.35s ease;
+  }
+  .region:hover .region-img img {
+    transform: scale(1.04);
+  }
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <nav class="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT US</a>
+    <a href="our-tea.html">OUR TEA</a>
+    <a href="quality.html">QUALITY</a>
+    <a href="contact-us.html" class="active">CONTACT US</a>
+  </nav>
+
+  <a href="index.html">
+    <img class="logo" src="assets/logo.png" alt="Salom Tea">
+  </a>
+
+  <div class="actions">
+    <a class="action" href="#" aria-label="Search">
+      <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+    </a>
+    <a class="action" href="#" aria-label="Account">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21c.7-4.1 3.4-6.2 8-6.2s7.3 2.1 8 6.2"/></svg>
+    </a>
+    <a class="action" href="#" aria-label="Cart">
+      <svg viewBox="0 0 24 24"><path d="M3 5h2l2.2 10.2a2 2 0 0 0 2 1.6h8.4a2 2 0 0 0 1.9-1.5L21 8H6"/><circle cx="10" cy="20" r="1.2"/><circle cx="18" cy="20" r="1.2"/></svg>
+      <span class="cart-count">0</span>
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1>CONTACT US</h1>
+    <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+    <p class="subtitle">We’d love to hear from you.</p>
+  </div>
+</section>
+
+<main class="contact-wrap">
+
+  <section class="contact-panel" id="contact-info">
+
+    <div class="info-grid">
+
+      <article class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12A7 7 0 0 0 5 9c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.2"/></svg>
+        </div>
+        <h3>Visit Us</h3>
+        <p>Peshawar, Pakistan</p>
+        <p>We would love to<br>welcome you.</p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 4l3 3-2 2c1.3 2.8 3 4.5 5.8 5.8l2-2 3 3-1.7 2.1c-.7.8-1.8 1.1-2.8.7C8.5 16.2 5.8 13.5 4.4 7.7c-.4-1 .0-2.1.8-2.8L7 4Z"/></svg>
+        </div>
+        <h3>Call Us</h3>
+        <p><strong>0300 9002321</strong></p>
+        <p>Mon - Sat<br>9:00 AM - 6:00 PM</p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/><path d="M9 9.5c.8 2.1 1.5 2.9 3.5 3.8l1.1-1.1 2 1.4c-.3.9-.9 1.3-1.7 1.2-3.6-.5-6.1-3-6.6-6.6-.1-.8.3-1.4 1.2-1.7l1.4 2L9 9.5Z"/></svg>
+        </div>
+        <h3>WhatsApp</h3>
+        <p><strong>0300 9002321</strong></p>
+        <p>Order or enquire<br>directly.</p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></svg>
+        </div>
+        <h3>Email Us</h3>
+        <p>salamtea.business<br>@gmail.com</p>
+        <p>We’ll respond as<br>soon as possible.</p>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="lower">
+
+    <section class="box">
+      <h2 class="box-title">Send Us a Message</h2>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M6 20c.5-3.2 2.5-5 6-5s5.5 1.8 6 5"/></svg>
+          <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+
+        <div class="form-group">
+          <svg viewBox="0 0 24 24"><path d="M7 4l3 3-2 2c1.3 2.8 3 4.5 5.8 5.8l2-2 3 3-1.7 2.1c-.7.8-1.8 1.1-2.8.7C8.5 16.2 5.8 13.5 4.4 7.7c-.4-1 .0-2.1.8-2.8L7 4Z"/></svg>
+          <input type="tel" name="phone" placeholder="Phone / WhatsApp" required>
+        </div>
+
+        <div class="form-group">
+          <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m4 7 8 6 8-6"/></svg>
+          <input type="email" name="email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+          <svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 3V5Z"/></svg>
+          <textarea name="message" placeholder="How can we help you?" required></textarea>
+        </div>
+
+        <button class="send-btn" type="submit">✈ &nbsp; SEND MESSAGE</button>
+      </form>
+    </section>
+
+    <section class="box whatsapp-box">
+      <div class="whatsapp-icon">
+        <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/><path d="M9 9.5c.8 2.1 1.5 2.9 3.5 3.8l1.1-1.1 2 1.4c-.3.9-.9 1.3-1.7 1.2-3.6-.5-6.1-3-6.6-6.6-.1-.8.3-1.4 1.2-1.7l1.4 2L9 9.5Z"/></svg>
+      </div>
+      <h3>Prefer WhatsApp?</h3>
+      <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+      <p>Chat with us directly on WhatsApp<br>for orders and enquiries.</p>
+      <a class="whatsapp-btn" href="https://wa.me/923009002321" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/><path d="M9 9.5c.8 2.1 1.5 2.9 3.5 3.8l1.1-1.1 2 1.4"/></svg>
+        ORDER / CHAT ON WHATSAPP
+      </a>
+    </section>
+
+    <section class="box map-box">
+      <h2 class="box-title">Find Us</h2>
+      <div class="map-content">
+        <div class="map" aria-label="Map placeholder">
+          <span class="map-pin"></span>
+        </div>
+
+        <div class="map-info">
+          <div class="location">
+            <svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12A7 7 0 0 0 5 9c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.2"/></svg>
+            <div>
+              <strong>Salamtea</strong><br>
+              Peshawar, Pakistan
+            </div>
+          </div>
+
+          <p>A trusted name since 1955.<br>We welcome you to visit us.</p>
+
+          <a class="directions" href="https://www.google.com/maps/search/?api=1&query=Salamtea%20Peshawar%20Pakistan" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M4 12h15"/><path d="m14 7 5 5-5 5"/></svg>
+            GET DIRECTIONS
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="box social-box">
+      <h2 class="social-title">Follow Us</h2>
+      <div class="social-grid">
+        <a class="social-link" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.3" cy="6.8" r=".7" fill="currentColor" stroke="none"/></svg>
+          salamteaofficial
+        </a>
+        <a class="social-link" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M14 20v-7h2.5l.5-3H14V8.3c0-.9.3-1.5 1.5-1.5H17V4.1c-.4-.1-1.2-.2-2.2-.2-2.2 0-3.8 1.3-3.8 3.8V10H8.5v3h2.5v7"/></svg>
+          Salamtea
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div>
+    <p>Salamtea — A Matter of Good Taste</p>
+    <small>Since 1955</small>
+    <div class="ornament"><span></span><b class="leafmark">♥</b><span></span></div>
+  </div>
+</footer>
+
+<script src="assets/salamtea.js"></script>
+<script>
+(function () {
+  const API_BASE = 'http://127.0.0.1:8000/api';
+
+  const form    = document.getElementById('contactForm');
+  const sendBtn = form.querySelector('.send-btn');
+
+  // Insert status message divs after the send button
+  const errDiv = document.createElement('div');
+  errDiv.id = 'ct-error';
+  errDiv.style.cssText = 'display:none;margin-top:10px;padding:10px 14px;background:#fdf0f0;border:1px solid #e0b0b0;color:#8b2020;border-radius:4px;font-size:12px;font-family:Arial,sans-serif;';
+
+  const okDiv = document.createElement('div');
+  okDiv.id = 'ct-ok';
+  okDiv.style.cssText = 'display:none;margin-top:10px;padding:10px 14px;background:#f0f6ec;border:1px solid #a0c080;color:#2a5020;border-radius:4px;font-size:12px;font-family:Arial,sans-serif;';
+
+  sendBtn.parentNode.insertBefore(errDiv, sendBtn.nextSibling);
+  sendBtn.parentNode.insertBefore(okDiv,  errDiv.nextSibling);
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    errDiv.style.display = okDiv.style.display = 'none';
+
+    const name    = form.elements.name.value.trim();
+    const phone   = form.elements.phone.value.trim();
+    const email   = form.elements.email.value.trim();
+    const message = form.elements.message.value.trim();
+
+    if (!name || !phone || !message) {
+      errDiv.textContent   = 'Please fill in Name, Phone and Message.';
+      errDiv.style.display = 'block';
+      return;
+    }
+
+    sendBtn.disabled    = true;
+    sendBtn.textContent = 'Sending…';
+
+    try {
+      const res  = await fetch(API_BASE + '/contact/send', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ name, phone, email: email || null, message }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.detail || 'Something went wrong.');
+
+      okDiv.textContent   = data.message || 'Message sent successfully! We will get back to you soon.';
+      okDiv.style.display = 'block';
+      form.reset();
+
+    } catch (err) {
+      errDiv.textContent   = err.message;
+      errDiv.style.display = 'block';
+    } finally {
+      sendBtn.disabled    = false;
+      sendBtn.textContent = '✈   SEND MESSAGE';
+    }
+  });
+})();
+</script>
+
+<script>
+/* Salamtea — page transition JS (non-destructive) */
+(function(){
+  /* Intercept internal nav clicks for a smooth leave transition */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[href]");
+    if(!a) return;
+    var href = a.getAttribute("href");
+    /* Only handle same-origin, non-anchor, non-blank links */
+    if(!href || href.startsWith("#") || href.startsWith("http") ||
+       href.startsWith("javascript") || a.target === "_blank") return;
+    e.preventDefault();
+    document.body.style.transition = "opacity 0.28s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function(){ window.location.href = href; }, 290);
+  });
+
+  /* Fade in on arrival */
+  document.body.style.opacity = "0";
+  window.addEventListener("pageshow", function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  });
+  /* Fallback immediate fade-in */
+  setTimeout(function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  }, 10);
+})();
+</script>
+</body>
+</html>

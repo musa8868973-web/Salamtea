@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — Salamtea</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+    :root{
+      --cream:#f6f1e8;
+      --green:#405d18;
+      --dark:#292922;
+      --line:#d9d1c3;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      background:var(--cream);
+      color:var(--dark);
+      font-family:Montserrat,Arial,sans-serif;
+    }
+
+    /* NAVBAR */
+    header{
+      height:80px;
+      border-bottom:1px solid var(--line);
+      background:rgba(246,241,232,.98);
+    }
+
+    .nav{
+      width:min(1200px,96%);
+      height:100%;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+    }
+
+    .menu{
+      display:flex;
+      gap:29px;
+      list-style:none;
+      align-items:center;
+    }
+
+    .menu a{
+      text-decoration:none;
+      color:#33332d;
+      font-size:12px;
+      font-weight:500;
+    }
+
+    .menu a.active{
+      color:var(--green);
+      position:relative;
+    }
+
+    .menu a.active:after{
+      content:"";
+      position:absolute;
+      height:1px;
+      width:20px;
+      background:var(--green);
+      bottom:-13px;
+      left:50%;
+      transform:translateX(-50%);
+    }
+
+    .logo{
+      width:83px;
+      height:66px;
+      object-fit:contain;
+      justify-self:center;
+    }
+
+    .icons{
+      justify-self:end;
+      display:flex;
+      gap:24px;
+      align-items:center;
+    }
+
+    .icon{
+      width:20px;
+      height:20px;
+      position:relative;
+      color:#34342e;
+    }
+
+    .search{
+      width:14px;
+      height:14px;
+      border:1.4px solid currentColor;
+      border-radius:50%;
+      position:absolute;
+      top:1px;
+      left:1px;
+    }
+
+    .search:after{
+      content:"";
+      width:6px;
+      height:1px;
+      background:currentColor;
+      position:absolute;
+      right:-5px;
+      bottom:-2px;
+      transform:rotate(48deg);
+    }
+
+    .person:before{
+      content:"";
+      width:8px;
+      height:8px;
+      border:1.3px solid currentColor;
+      border-radius:50%;
+      position:absolute;
+      left:6px;
+      top:0;
+    }
+
+    .person:after{
+      content:"";
+      width:16px;
+      height:8px;
+      border:1.3px solid currentColor;
+      border-bottom:0;
+      border-radius:10px 10px 0 0;
+      position:absolute;
+      left:2px;
+      bottom:1px;
+    }
+
+    .cart:before{
+      content:"";
+      position:absolute;
+      left:2px;
+      top:5px;
+      width:15px;
+      height:9px;
+      border:1.4px solid currentColor;
+      border-top:0;
+      transform:skew(-8deg);
+    }
+
+    .cart:after{
+      content:"•  •";
+      white-space:pre;
+      position:absolute;
+      left:3px;
+      bottom:-5px;
+      font-size:12px;
+      letter-spacing:3px;
+    }
+
+    .badge{
+      position:absolute;
+      top:-6px;
+      right:-7px;
+      background:var(--green);
+      color:#fff;
+      width:14px;
+      height:14px;
+      border-radius:50%;
+      font-size:8px;
+      display:grid;
+      place-items:center;
+      z-index:2;
+    }
+
+    /* PAGE */
+    .about-page{
+      min-height:auto;
+      position:relative;
+      overflow:hidden;
+      padding:56px 48px 100px;
+      background:
+        linear-gradient(to bottom,rgba(246,241,232,.94) 0%,rgba(246,241,232,.84) 57%,rgba(246,241,232,.12) 100%),
+        url("assets/tea-garden.jpg") center bottom / cover no-repeat;
+    }
+
+    .content{
+      width:min(1080px,100%);
+      margin:auto;
+      display:grid;
+      grid-template-columns:46% 54%;
+      align-items:start;
+      gap:55px;
+      position:relative;
+      z-index:2;
+    }
+
+    .photo-wrap{
+      background:rgba(255,255,255,.25);
+      border:1px solid #d6cec0;
+      border-radius:13px;
+      padding:6px;
+      box-shadow:0 1px 5px rgba(50,45,35,.05);
+    }
+
+    .photo{
+      display:block;
+      width:100%;
+      aspect-ratio:1 / 1;
+      object-fit:cover;
+      object-position:center;
+      border-radius:9px;
+    }
+
+    .story{
+      padding-top:13px;
+    }
+
+    .title{
+      text-align:center;
+      font-family:"Cormorant Garamond",serif;
+      font-size:44px;
+      line-height:1;
+      font-weight:600;
+      color:var(--green);
+    }
+
+    .divider{
+      width:155px;
+      margin:12px auto 22px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .divider:before,.divider:after{
+      content:"";
+      flex:1;
+      height:1px;
+      background:#aaa99d;
+    }
+
+    .leaf{
+      color:var(--green);
+      font-size:17px;
+      line-height:1;
+    }
+
+    .story-item{
+      display:grid;
+      grid-template-columns:18px 1fr;
+      gap:10px;
+      margin-bottom:20px;
+    }
+
+    .story-item .bullet{
+      color:var(--green);
+      font-size:14px;
+      padding-top:3px;
+    }
+
+    .story-item p{
+      font-family:"Cormorant Garamond",serif;
+      font-size:17px;
+      line-height:1.42;
+      font-weight:500;
+    }
+
+    .closing{
+      margin-top:12px;
+      text-align:center;
+      font-family:"Cormorant Garamond",serif;
+      font-size:19px;
+      color:#3f4735;
+    }
+
+    .closing strong{
+      color:var(--green);
+      font-weight:600;
+    }
+
+    /* MOBILE */
+    @media(max-width:700px){
+      header{height:auto;padding:10px 0}
+
+      .nav{
+        grid-template-columns:1fr auto 1fr;
+      }
+
+      .menu{
+        gap:10px;
+        flex-wrap:wrap;
+      }
+
+      .menu a{font-size:8px}
+
+      .logo{
+        width:70px;
+        height:55px;
+      }
+
+      .icons{gap:10px}
+
+      .about-page{
+        padding:25px 18px 100px;
+      }
+
+      .content{
+        grid-template-columns:1fr;
+        gap:28px;
+      }
+
+      .story{padding-top:0}
+
+      .title{font-size:34px}
+
+      .story-item p{font-size:15px}
+    }
+
+    @media(max-width:570px){
+      .menu{display:none}
+
+      .nav:before{
+        content:"MENU";
+        font-size:9px;
+        letter-spacing:1px;
+        color:var(--green);
+      }
+
+      .content{gap:24px}
+
+      .about-page{
+        padding:22px 14px 80px;
+      }
+
+      .story-item{
+        margin-bottom:16px;
+      }
+
+      .story-item p{
+        font-size:14px;
+      }
+    }
+  
+  /* =========================================================
+     SALAMTEA — LUXURY ANIMATIONS (injected, non-destructive)
+     ========================================================= */
+
+  /* 1. Smooth scroll globally */
+  html { scroll-behavior: smooth; }
+
+  /* 2. Keyframes */
+  @keyframes st-logo-float-in {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0);      }
+  }
+
+  @keyframes st-fade-slide-up {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0);    }
+  }
+
+  /* 3. Logo entrance — nav logo (all pages) */
+  .logo {
+    animation: st-logo-float-in 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  }
+
+  /* 4. Hero logo entrance (index only — slightly slower for drama) */
+  .hero-logo {
+    animation: st-logo-float-in 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.05s both;
+  }
+
+  /* 5. Page main content fade + slide up */
+  main, .about-page, .page, .contact-wrap {
+    animation: st-fade-slide-up 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) 0.08s both;
+  }
+
+  /* 6. Nav link hover transitions */
+  .menu a,
+  .nav a {
+    transition: color 0.28s ease, letter-spacing 0.28s ease;
+  }
+
+  /* 7. Nav icon hover */
+  .icon,
+  .action,
+  .actions a {
+    transition: transform 0.28s ease, opacity 0.28s ease;
+  }
+  .icon:hover,
+  .action:hover,
+  .actions a:hover {
+    transform: translateY(-2px);
+    opacity: 0.75;
+  }
+
+  /* 8. Buttons */
+  .btn,
+  button,
+  [type="submit"],
+  .submit-btn {
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .btn:hover,
+  button:hover,
+  [type="submit"]:hover,
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(63,93,22,.18);
+  }
+
+  /* 9. Tea / product cards */
+  .product-card,
+  .promise,
+  .diff,
+  .region,
+  .feature {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .product-card:hover,
+  .promise:hover,
+  .diff:hover,
+  .region:hover,
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(45,40,30,.09);
+  }
+
+  /* 10. Feature icons & CTA icons */
+  .feature-icon,
+  .icon-circle {
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .feature-icon:hover,
+  .icon-circle:hover {
+    transform: scale(1.12);
+    border-color: var(--green);
+  }
+
+  /* 11. Photo wrap (about page) */
+  .photo-wrap {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .photo-wrap:hover {
+    transform: translateY(-3px) scale(1.008);
+    box-shadow: 0 10px 32px rgba(45,40,30,.10);
+  }
+
+  /* 12. Pack rows (our-tea) */
+  .pack {
+    transition: background 0.22s ease, border-color 0.22s ease;
+  }
+  .pack:hover {
+    background: rgba(255,255,255,.55);
+    border-color: var(--green);
+  }
+
+  /* 13. Form inputs (contact) */
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    box-shadow: 0 0 0 3px rgba(63,93,22,.10);
+  }
+
+  /* 14. Region / flag images */
+  .region-img,
+  .region-img img {
+    transition: transform 0.35s ease;
+  }
+  .region:hover .region-img img {
+    transform: scale(1.04);
+  }
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav class="nav">
+
+    <ul class="menu">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="about.html" class="active">ABOUT US</a></li>
+      <li><a href="our-tea.html">OUR TEA</a></li>
+      <li><a href="quality.html">QUALITY</a></li>
+      <li><a href="contact-us.html">CONTACT US</a></li>
+    </ul>
+
+    <img class="logo" src="assets/logo.png" alt="Salamtea — Since 1955">
+
+    <div class="icons">
+      <span class="icon"><span class="search"></span></span>
+      <span class="icon"><span class="person"></span></span>
+      <span class="icon cart"><span class="badge">0</span></span>
+    </div>
+
+  </nav>
+</header>
+
+
+<main class="about-page">
+
+  <div class="content">
+
+    <!-- Haji Abdul Salam photo -->
+    <div class="photo-wrap">
+      <img
+        class="photo"
+        src="assets/haji-abdul-salam.jpg"
+        alt="Haji Abdul Salam — Founder of Salamtea">
+    </div>
+
+
+    <section class="story">
+
+      <h1 class="title">About Us</h1>
+
+      <div class="divider">
+        <span class="leaf">♥</span>
+      </div>
+
+
+      <div class="story-item">
+        <div class="bullet">♥</div>
+        <p>
+          Our story begins in the streets of Peshawar in 1955, when Haji Abdul Salam laid the foundation of Salamtea. With a deep passion for quality, he imported fine tea directly from Kenya, China, and Vietnam, bringing pure, authentic flavors to homes across Pakistan.
+        </p>
+      </div>
+
+
+      <div class="story-item">
+        <div class="bullet">♥</div>
+        <p>
+          His dedication earned the trust of an entire community. Customers travelled from far and wide, and the daily crowds outside his shop made it a local legend. That trust was earned cup by cup, year after year.
+        </p>
+      </div>
+
+
+      <div class="story-item">
+        <div class="bullet">♥</div>
+        <p>
+          Today, that legacy is carried forward by Rizwan Shahid and family with the same integrity and dedication.
+        </p>
+      </div>
+
+
+      <div class="story-item">
+        <div class="bullet">♥</div>
+        <p>
+          Now, as the next generation steps in, Salamtea is entering an exciting new chapter. While proudly continuing our wholesale business, we are now bringing our fine tea directly to your doorstep.
+        </p>
+      </div>
+
+
+      <div class="divider" style="margin-top:8px;margin-bottom:10px;">
+        <span class="leaf">♥</span>
+      </div>
+
+      <p class="closing">
+        <strong>Salamtea</strong> — A Matter of Good Taste, since 1955.
+      </p>
+
+    </section>
+
+  </div>
+
+</main>
+
+<script>
+/* Salamtea — page transition JS (non-destructive) */
+(function(){
+  /* Intercept internal nav clicks for a smooth leave transition */
+  document.addEventListener("click", function(e){
+    var a = e.target.closest("a[href]");
+    if(!a) return;
+    var href = a.getAttribute("href");
+    /* Only handle same-origin, non-anchor, non-blank links */
+    if(!href || href.startsWith("#") || href.startsWith("http") ||
+       href.startsWith("javascript") || a.target === "_blank") return;
+    e.preventDefault();
+    document.body.style.transition = "opacity 0.28s ease";
+    document.body.style.opacity = "0";
+    setTimeout(function(){ window.location.href = href; }, 290);
+  });
+
+  /* Fade in on arrival */
+  document.body.style.opacity = "0";
+  window.addEventListener("pageshow", function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  });
+  /* Fallback immediate fade-in */
+  setTimeout(function(){
+    document.body.style.transition = "opacity 0.32s ease";
+    document.body.style.opacity   = "1";
+  }, 10);
+})();
+</script>
+<script src="assets/salamtea.js"></script>
+</body>
+</html>
