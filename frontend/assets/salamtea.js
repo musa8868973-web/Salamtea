@@ -14,7 +14,7 @@
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const ST = {
-  API_BASE: 'http://127.0.0.1:8000/api',   // ← change to your deployed URL in prod
+  API_BASE: 'https://salamtea-production.up.railway.app/api',   // ← production backend on Railway
   WA_PHONE: '923009002321',
 
   PRICES: {
