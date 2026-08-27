@@ -19,3 +19,12 @@ else:
     engine = create_engine(sqlite_url, connect_args={"check_same_thread": False}, future=True)
 
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+
+
+def get_db():
+    """FastAPI dependency: yield a DB session and always close it."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
