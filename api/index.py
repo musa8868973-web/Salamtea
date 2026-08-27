@@ -1,9 +1,17 @@
 import sys
 import os
 
-# Set current working directory to 'backend'
-backend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "backend"))
-sys.path.insert(0, backend_dir)
+# Root directory aur backend directory ko Python path me top standard priority par add kar rahe hain
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.abspath(os.path.join(current_dir, ".."))
+backend_dir = os.path.join(root_dir, "backend")
+
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
 os.chdir(backend_dir)
 
-from run import app
+try:
+    from run import app
+except ImportError:
+    from backend.run import app
