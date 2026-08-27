@@ -9,36 +9,23 @@ Switch to PostgreSQL in production by setting DATABASE_URL in .env:
 
 import os
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, DeclarativeBase
-from dotenv import load_dotenv
+from sqlalchemy.orm import declarative_base, sessionmaker
 
-load_dotenv()
+Base = declarative_base()
 
-DATABASE_URL: str = os.getenv(
-    "DATABASE_URL", "sqlite:///./salamtea.db"
-)
+# Prefer a DATABASE_URL environment variable (Railway PostgreSQL plugin)
+database_url = os.getenv("DATABASE_URL")
 
-# SQLite requires check_same_thread=False; PostgreSQL ignores the kwarg
-connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+if database_url:
+    # For databases like PostgreSQL, SQLAlchemy accepts DATABASE_URL directly
+    engine = create_engine(database_url, future=True)
+else:
+    # Fall back to local SQLite for development
+    db_path = os.path.join(os.path.dirname(__file__), "..", "salamtea.db")
+    sqlite_url = f"sqlite:///{os.path.abspath(db_path)}"
+    engine = create_engine(sqlite_url, connect_args={"check_same_thread": False}, future=True)
 
-engine = create_engine(
-    DATABASE_URL,
-    connect_args=connect_args,
-    pool_pre_ping=True,   # detect stale connections
-    echo=False,            # set True to log SQL in dev
-)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 
-class Base(DeclarativeBase):
-    pass
 
-
-# ── Dependency injected into route handlers ───────────────────────────────────
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
